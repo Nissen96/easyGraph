@@ -30,18 +30,21 @@ def build():
 			done = True
 		except:
 			# Failed to minify, abort
-			pass
+			print('failed to minify')
 	if not done:
 		with open(path, 'w') as f:
 			f.write(data)
 	print('built %s (%u bytes)' % (path, len(data)))
 
 def deploy():
-	for obj in os.listdir('./'):
-		if (os.path.isdir(obj) and obj != '.git'):
-			shutil.rmtree(obj)
+    try:
+        for obj in os.listdir('./'):
+            if (os.path.isdir(obj) and obj != '.git'):
+                shutil.rmtree(obj)
 
-	os.remove('./build.py')
+        os.remove('./build.py')
+    except:
+        print('deployment failed')
 
 if __name__ == '__main__':
 	if '--minify' in sys.argv:

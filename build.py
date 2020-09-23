@@ -45,6 +45,8 @@ def deploy():
         os.remove('./build.py')
     except:
         print('cleanup failed')
+    else:
+        print('cleanup successful')
 
 if __name__ == '__main__':
     if '--minify' in sys.argv:

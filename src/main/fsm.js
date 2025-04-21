@@ -60,7 +60,7 @@ function textToXML(text) {
     if (c >= ' ' && c <= '~') {
       result += text[i]
     } else {
-      result += '&#' + c + ';'
+      result += '&#' + c.charCodeAt(0) + ';'
     }
   })
   return result

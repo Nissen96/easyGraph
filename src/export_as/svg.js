@@ -45,7 +45,7 @@ function ExportAsSVG() {
         '"/>\n'
     } else {
       if (isReversed) {
-        [startAngle, endAngle] = [endAngle, startAngle]
+        ;[startAngle, endAngle] = [endAngle, startAngle]
       }
 
       if (endAngle < startAngle) {
@@ -82,8 +82,10 @@ function ExportAsSVG() {
       '" stroke-width="' +
       this.lineWidth +
       '" points="'
-    this._points.forEach((p, i) =>
-      this._svgData += (i > 0 ? ' ' : '') + fixed(p.x, 3) + ',' + fixed(p.y, 3)
+    this._points.forEach(
+      (p, i) =>
+        (this._svgData +=
+          (i > 0 ? ' ' : '') + fixed(p.x, 3) + ',' + fixed(p.y, 3)),
     )
     this._svgData += '"/>\n'
   }
@@ -95,8 +97,10 @@ function ExportAsSVG() {
       '" stroke-width="' +
       this.lineWidth +
       '" points="'
-    this._points.forEach((p, i) =>
-      this._svgData += (i > 0 ? ' ' : '') + fixed(p.x, 3) + ',' + fixed(p.y, 3)
+    this._points.forEach(
+      (p, i) =>
+        (this._svgData +=
+          (i > 0 ? ' ' : '') + fixed(p.x, 3) + ',' + fixed(p.y, 3)),
     )
     this._svgData += '"/>\n'
   }

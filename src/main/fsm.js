@@ -37,11 +37,11 @@ function convertLatexShortcuts(text) {
   greekLetterNames.forEach((letter, i) => {
     text = text.replace(
       new RegExp('\\\\' + letter, 'g'),
-      String.fromCharCode(913 + i + (i > 16))
+      String.fromCharCode(913 + i + (i > 16)),
     )
     text = text.replace(
       new RegExp('\\\\' + letter.toLowerCase(), 'g'),
-      String.fromCharCode(945 + i + (i > 16))
+      String.fromCharCode(945 + i + (i > 16)),
     )
   })
 
@@ -56,12 +56,11 @@ function convertLatexShortcuts(text) {
 function textToXML(text) {
   text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   let result = ''
-  text.forEach((c, i) => {
-    const cc = text.charCodeAt(i)
-    if (cc >= 0x20 && cc <= 0x7e) {
+  ;[...text].forEach((c, i) => {
+    if (c >= ' ' && c <= '~') {
       result += text[i]
     } else {
-      result += '&#' + cc + ';'
+      result += '&#' + c + ';'
     }
   })
   return result
@@ -284,7 +283,7 @@ window.onload = function () {
           currentLink = new StartLink(
             targetNode,
             originalClick,
-            checkDirected()
+            checkDirected(),
           )
         } else {
           currentLink = new TemporaryLink(originalClick, mouse, checkDirected())
@@ -298,7 +297,7 @@ window.onload = function () {
           currentLink = new TemporaryLink(
             selectedObject.closestPointOnCircle(mouse.x, mouse.y),
             mouse,
-            checkDirected()
+            checkDirected(),
           )
         }
       }
@@ -344,7 +343,7 @@ document.onkeydown = function (e) {
     if (selectedObject != null && 'text' in selectedObject) {
       selectedObject.text = selectedObject.text.substr(
         0,
-        selectedObject.text.length - 1
+        selectedObject.text.length - 1,
       )
       resetCaret()
       draw()
@@ -469,7 +468,7 @@ function saveAsPNG() {
   pngLink.download = 'image.png'
   pngLink.href = pngData.replace(
     /^data:image\/[^;]/,
-    'data:application/octet-stream'
+    'data:application/octet-stream',
   )
 }
 

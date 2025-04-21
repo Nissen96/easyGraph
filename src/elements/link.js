@@ -66,7 +66,7 @@ Link.prototype.getEndPointsAndCircle = function () {
     this.nodeB.x,
     this.nodeB.y,
     anchor.x,
-    anchor.y
+    anchor.y,
   )
   const isReversed = this.perpendicularPart > 0
   const reverseScale = isReversed ? 1 : -1
@@ -107,7 +107,7 @@ Link.prototype.draw = function (c) {
       stuff.circleRadius,
       stuff.startAngle,
       stuff.endAngle,
-      stuff.isReversed
+      stuff.isReversed,
     )
   } else {
     c.moveTo(stuff.startX, stuff.startY)
@@ -122,14 +122,14 @@ Link.prototype.draw = function (c) {
         c,
         stuff.endX,
         stuff.endY,
-        stuff.endAngle - stuff.reverseScale * (Math.PI / 2)
+        stuff.endAngle - stuff.reverseScale * (Math.PI / 2),
       )
     } else {
       drawArrow(
         c,
         stuff.endX,
         stuff.endY,
-        Math.atan2(stuff.endY - stuff.startY, stuff.endX - stuff.startX)
+        Math.atan2(stuff.endY - stuff.startY, stuff.endX - stuff.startX),
       )
     }
   }
@@ -150,7 +150,7 @@ Link.prototype.draw = function (c) {
     const textY = (stuff.startY + stuff.endY) / 2
     const textAngle = Math.atan2(
       stuff.endX - stuff.startX,
-      stuff.startY - stuff.endY
+      stuff.startY - stuff.endY,
     )
     drawText(
       c,
@@ -158,7 +158,7 @@ Link.prototype.draw = function (c) {
       textX,
       textY,
       textAngle + this.lineAngleAdjust,
-      selectedObject === this
+      selectedObject === this,
     )
   }
 }

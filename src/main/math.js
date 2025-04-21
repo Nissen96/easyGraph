@@ -13,7 +13,7 @@ function circleFromThreePoints(x1, y1, x2, y2, x3, y3) {
     1,
     x3 * x3 + y3 * y3,
     y3,
-    1
+    1,
   )
   const by = det(
     x1 * x1 + y1 * y1,
@@ -24,7 +24,7 @@ function circleFromThreePoints(x1, y1, x2, y2, x3, y3) {
     1,
     x3 * x3 + y3 * y3,
     x3,
-    1
+    1,
   )
   const c = -det(
     x1 * x1 + y1 * y1,
@@ -35,7 +35,7 @@ function circleFromThreePoints(x1, y1, x2, y2, x3, y3) {
     y2,
     x3 * x3 + y3 * y3,
     x3,
-    y3
+    y3,
   )
   return {
     x: -bx / (2 * a),

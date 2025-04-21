@@ -5,21 +5,17 @@ function ExportAsLaTeX() {
   this._scale = 0.1 // to convert pixels to document space (TikZ breaks if the numbers get too big, above 500?)
 
   this.toLaTeX = function () {
-    return (
-      '\\documentclass[12pt]{article}\n' +
-      '\\usepackage{tikz}\n' +
-      '\n' +
-      '\\begin{document}\n' +
-      '\n' +
-      '\\begin{center}\n' +
-      '\\begin{tikzpicture}[scale=0.2]\n' +
-      '\\tikzstyle{every node}+=[inner sep=0pt]\n' +
-      this._texData +
-      '\\end{tikzpicture}\n' +
-      '\\end{center}\n' +
-      '\n' +
-      '\\end{document}\n'
-    )
+    return `\\documentclass[12pt]{article}
+\\usepackage{tikz}
+
+\\begin{document}
+\\begin{center}
+\\begin{tikzpicture}[scale=0.2]
+\\tikzstyle{every node}+=[inner sep=0pt]
+${this._texData}
+\\end{tikzpicture}
+\\end{center}
+\\end{document}`
   }
 
   this.beginPath = function () {
@@ -30,16 +26,10 @@ function ExportAsLaTeX() {
     y *= this._scale
     radius *= this._scale
     if (endAngle - startAngle === Math.PI * 2) {
-      this._texData +=
-        '\\draw [' +
-        this.strokeStyle +
-        '] (' +
-        fixed(x, 3) +
-        ',' +
-        fixed(-y, 3) +
-        ') circle (' +
-        fixed(radius, 3) +
-        ');\n'
+      this._texData += `\\draw [${this.strokeStyle}] (${fixed(x, 3)}, ${fixed(
+        -y,
+        3,
+      )}) circle (${fixed(radius, 4)});\n`
     } else {
       if (isReversed) {
         ;[startAngle, endAngle] = [endAngle, startAngle]
@@ -57,20 +47,13 @@ function ExportAsLaTeX() {
       }
       startAngle = -startAngle
       endAngle = -endAngle
-      this._texData +=
-        '\\draw [' +
-        this.strokeStyle +
-        '] (' +
-        fixed(x + radius * Math.cos(startAngle), 3) +
-        ',' +
-        fixed(-y + radius * Math.sin(startAngle), 3) +
-        ') arc (' +
-        fixed((startAngle * 180) / Math.PI, 5) +
-        ':' +
-        fixed((endAngle * 180) / Math.PI, 5) +
-        ':' +
-        fixed(radius, 3) +
-        ');\n'
+      this._texData += `\\draw [](${fixed(
+        x + radius * Math.cos(startAngle),
+        3,
+      )}, ${fixed(-y + radius * Math.sin(startAngle), 3)}) arc (${fixed(
+        (startAngle * 180) / Math.PI,
+        5,
+      )}:${fixed((endAngle * 180) / Math.PI, 5)}:${fixed(radius, 3)});\n`
     }
   }
   this.moveTo = this.lineTo = function (x, y) {

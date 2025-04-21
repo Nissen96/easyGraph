@@ -28,7 +28,7 @@ function restoreBackup() {
         link = new Link(
           nodes[backupLink.nodeA],
           nodes[backupLink.nodeB],
-          directed
+          directed,
         )
         link.parallelPart = backupLink.parallelPart
         link.perpendicularPart = backupLink.perpendicularPart

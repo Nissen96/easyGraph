@@ -17,7 +17,7 @@ TemporaryLink.prototype.draw = function (c) {
       c,
       this.to.x,
       this.to.y,
-      Math.atan2(this.to.y - this.from.y, this.to.x - this.from.x)
+      Math.atan2(this.to.y - this.from.y, this.to.x - this.from.x),
     )
   }
 }

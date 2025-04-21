@@ -15,9 +15,9 @@ def build():
     if minify:
         print('minifying %s' % (path))
         try:
-            url = 'https://javascript-minifier.com/raw'
+            url = 'https://www.toptal.com/developers/javascript-minifier/api/raw'
             reqData = urllib.parse.urlencode({ 'input': data }).encode()
-            req = urllib.request.Request(url, data=reqData)
+            req = urllib.request.Request(url, data=reqData, headers={"User-Agent": "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"})
             response = urllib.request.urlopen(req)
             if response.status < 200 or response.status >= 300:
                 raise IOError("Error in response")

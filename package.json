@@ -1,0 +1,20 @@
+{
+  "name": "easygraph",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "python ./build.py --minify",
+    "lint:js": "eslint --ext .js --ignore-pattern .gitignore .",
+    "lint": "yarn run lint:js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/eslint-parser": "^7.27.0",
+    "@babel/preset-env": "^7.26.9",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "prettier": "^3.5.3"
+  }
+}

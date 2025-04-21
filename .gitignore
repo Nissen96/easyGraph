@@ -1,2 +1,4 @@
 fsm.js
 .idea
+node_modules
+.vscode
